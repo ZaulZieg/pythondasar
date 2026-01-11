@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasar Pemrograman Python</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/white.min.css">
+    <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+            text-transform: none;
+        }
+        .reveal h1 {
+            color: #0066cc;
+            text-shadow: 0 0 10px rgba(0, 102, 204, 0.3);
+        }
+        .reveal h2 {
+            color: #333333;
+        }
+        .reveal h3 {
+            color: #333333;
+        }
+        .reveal p {
+            color: #333333;
+        }
+        .reveal li {
+            color: #333333;
+        }
+        .reveal strong {
+            color: #0066cc;
+        }
+        .reveal pre {
+            width: 100%;
+            font-size: 0.55em;
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+        }
+        .reveal code {
+            padding: 2px 6px;
+            background: rgba(0, 102, 204, 0.1);
+            border-radius: 3px;
+            color: #0066cc;
+        }
+        .slide-number {
+            font-size: 0.7em;
+            color: #666666;
+        }
+        .reveal section {
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4f8 100%);
+        }
+        .reveal section:nth-child(even) {
+            background: linear-gradient(135deg, #f9f9f9 0%, #f0f4f8 100%);
+        }
+        .reveal section:nth-child(odd) section {
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- MATERI 1: Pengenalan -->
+            <section>
+                <section>
+                    <h1>Dasar Pemrograman Python</h1>
+                    <p>Materi 1: Pengenalan & Instalasi</p>
+                </section>
+
+                <section>
+                    <h2>Apa itu Python?</h2>
+                    <p>Bahasa pemrograman tingkat tinggi yang mudah dipelajari</p>
+                    <p>Dirancang dengan filosofi "readability counts"</p>
+                </section>
+
+                <section>
+                    <h2>Kelebihan Python</h2>
+                    <ul>
+                        <li>Sintaks sederhana dan mirip bahasa manusia</li>
+                        <li>Versatile: web, data science, AI, automasi, game</li>
+                        <li>Komunitas besar dan dokumentasi lengkap</li>
+                        <li>Cross-platform: Windows, Mac, Linux</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Contoh Penggunaan</h2>
+                    <ul>
+                        <li>Web development (Django, Flask)</li>
+                        <li>Data science & machine learning (NumPy, Pandas, TensorFlow)</li>
+                        <li>Automasi dan scripting</li>
+                        <li>Game development (Pygame)</li>
+                        <li>Scientific computing</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Instalasi Python</h2>
+                    <ol>
+                        <li>Kunjungi https://www.python.org/downloads/</li>
+                        <li>Download versi terbaru (Python 3.x)</li>
+                        <li>Jalankan installer dan centang "Add Python to PATH"</li>
+                        <li>Klik Install</li>
+                    </ol>
+                </section>
+
+                <section>
+                    <h2>Verifikasi Instalasi</h2>
+                    <pre><code class="language-bash">python --version</code></pre>
+                    <p>Jika muncul versi Python, instalasi berhasil</p>
+                </section>
+
+                <section>
+                    <h2>Pilihan Editor</h2>
+                    <ul>
+                        <li><strong>IDLE</strong>: Cukup untuk pemula</li>
+                        <li><strong>VS Code</strong>: Modern, banyak extension</li>
+                        <li><strong>PyCharm</strong>: IDE profesional</li>
+                        <li><strong>Thonny</strong>: Khusus untuk pemula</li>
+                        <li><strong>Jupyter Notebook</strong>: Bagus untuk data science</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Cara Menjalankan Python</h2>
+                    <p><strong>Cara 1: Interactive Shell (REPL)</strong></p>
+                    <pre><code class="language-bash">python
+>>> print("Hello, World!")</code></pre>
+                    <p><strong>Cara 2: File Script (.py)</strong></p>
+                    <pre><code class="language-bash">python hello.py</code></pre>
+                </section>
+
+                <section>
+                    <h2>Program Pertama: Hello World</h2>
+                    <pre><code class="language-python"># Ini adalah komentar
+print("Hello, World!")
+print("Nama saya adalah Python")</code></pre>
+                    <p><strong>Output:</strong></p>
+                    <pre><code>Hello, World!
+Nama saya adalah Python</code></pre>
+                </section>
+            </section>
+
+            <!-- MATERI 2: Variabel & Tipe Data -->
+            <section>
+                <section>
+                    <h1>Materi 2: Variabel & Tipe Data</h1>
+                </section>
+
+                <section>
+                    <h2>Variabel</h2>
+                    <p>Wadah untuk menyimpan data</p>
+                    <pre><code class="language-python">nama = "Budi"
+umur = 16
+tinggi = 175.5</code></pre>
+                </section>
+
+                <section>
+                    <h2>Aturan Penamaan Variabel</h2>
+                    <ul>
+                        <li>Boleh huruf, angka, underscore (_)</li>
+                        <li>Harus dimulai dengan huruf atau underscore</li>
+                        <li>Tidak boleh ada spasi</li>
+                        <li>Gunakan snake_case (nama_lengkap)</li>
+                        <li>Hindari kata kunci Python</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Tipe Data Dasar (1/2)</h2>
+                    <p><strong>Integer (bilangan bulat)</strong></p>
+                    <pre><code class="language-python">umur = 16
+saldo = -5000</code></pre>
+                    <p><strong>Float (bilangan desimal)</strong></p>
+                    <pre><code class="language-python">tinggi = 175.5
+phi = 3.14159</code></pre>
+                </section>
+
+                <section>
+                    <h2>Tipe Data Dasar (2/2)</h2>
+                    <p><strong>String (teks)</strong></p>
+                    <pre><code class="language-python">nama = "Budi Santoso"
+pesan = "Halo, apa kabar?"</code></pre>
+                    <p><strong>Boolean (True/False)</strong></p>
+                    <pre><code class="language-python">is_siswa = True
+is_lulus = False</code></pre>
+                </section>
+
+                <section>
+                    <h2>Melihat Tipe Data</h2>
+                    <pre><code class="language-python">print(type(16))        # &lt;class 'int'&gt;
+print(type(3.14))      # &lt;class 'float'&gt;
+print(type("Halo"))    # &lt;class 'str'&gt;
+print(type(True))      # &lt;class 'bool'&gt;</code></pre>
+                </section>
+
+                <section>
+                    <h2>Operator Aritmatika</h2>
+                    <pre><code class="language-python">a = 10
+b = 3
+
+a + b    # 13 (penjumlahan)
+a - b    # 7  (pengurangan)
+a * b    # 30 (perkalian)
+a / b    # 3.333... (pembagian)
+a // b   # 3  (pembagian bulat)
+a % b    # 1  (modulo/sisa)
+a ** 2   # 100 (pangkat)</code></pre>
+                </section>
+
+                <section>
+                    <h2>Operator Perbandingan</h2>
+                    <pre><code class="language-python">a = 10
+b = 3
+
+a == b   # False (sama dengan)
+a != b   # True (tidak sama dengan)
+a > b    # True (lebih besar)
+a < b    # False (lebih kecil)
+a >= b   # True (lebih besar sama dengan)
+a <= b   # False (lebih kecil sama dengan)</code></pre>
+                </section>
+
+                <section>
+                    <h2>Input dari Pengguna</h2>
+                    <pre><code class="language-python">nama = input("Masukkan nama Anda: ")
+print("Halo, " + nama)</code></pre>
+                    <p><strong>Catatan:</strong> input() mengembalikan string!</p>
+                    <pre><code class="language-python">umur = int(input("Berapa umur Anda: "))
+print(umur + 1)  # Bisa!</code></pre>
+                </section>
+
+                <section>
+                    <h2>Konversi Tipe Data</h2>
+                    <pre><code class="language-python">umur_str = "25"
+umur_int = int(umur_str)  # 25
+
+tinggi_str = "175.5"
+tinggi_float = float(tinggi_str)  # 175.5
+
+umur = 25
+umur_str = str(umur)  # "25"</code></pre>
+                </section>
+
+                <section>
+                    <h2>Program: Kalkulator Sederhana</h2>
+                    <pre><code class="language-python">angka1 = float(input("Angka pertama: "))
+angka2 = float(input("Angka kedua: "))
+
+print(f"Penjumlahan: {angka1 + angka2}")
+print(f"Pengurangan: {angka1 - angka2}")
+print(f"Perkalian: {angka1 * angka2}")
+print(f"Pembagian: {angka1 / angka2}")</code></pre>
+                </section>
+            </section>
+
+            <!-- MATERI 3: Percabangan -->
+            <section>
+                <section>
+                    <h1>Materi 3: Percabangan</h1>
+                </section>
+
+                <section>
+                    <h2>Operator Logika</h2>
+                    <pre><code class="language-python"># AND (semua harus True)
+x = 5
+(x > 0) and (x < 10)  # True
+
+# OR (minimal satu True)
+(x < 0) or (x > 3)  # True
+
+# NOT (kebalikan)
+is_admin = False
+not is_admin  # True</code></pre>
+                </section>
+
+                <section>
+                    <h2>Struktur If</h2>
+                    <pre><code class="language-python">umur = int(input("Berapa umur Anda: "))
+
+if umur >= 18:
+    print("Anda sudah dewasa")</code></pre>
+                    <p>Gunakan <code>:</code> setelah kondisi</p>
+                    <p>Indentasi 4 spasi untuk isi blok</p>
+                </section>
+
+                <section>
+                    <h2>If-Else</h2>
+                    <pre><code class="language-python">skor = int(input("Skor Anda: "))
+
+if skor >= 70:
+    print("LULUS")
+else:
+    print("TIDAK LULUS")</code></pre>
+                </section>
+
+                <section>
+                    <h2>If-Elif-Else</h2>
+                    <pre><code class="language-python">nilai = int(input("Nilai (0-100): "))
+
+if nilai >= 90:
+    print("Grade: A")
+elif nilai >= 80:
+    print("Grade: B")
+elif nilai >= 70:
+    print("Grade: C")
+else:
+    print("Grade: D")</code></pre>
+                </section>
+
+                <section>
+                    <h2>Percabangan Bersarang</h2>
+                    <pre><code class="language-python">umur = int(input("Umur: "))
+punya_sim = input("Punya SIM? (ya/tidak): ")
+
+if umur >= 18:
+    if punya_sim == "ya":
+        print("Boleh berkendara")
+    else:
+        print("Buat SIM dulu")
+else:
+    print("Belum cukup umur")</code></pre>
+                </section>
+
+                <section>
+                    <h2>Program: Nilai Huruf</h2>
+                    <pre><code class="language-python">nilai = int(input("Nilai (0-100): "))
+
+if nilai >= 85:
+    huruf = "A"
+elif nilai >= 70:
+    huruf = "B"
+elif nilai >= 60:
+    huruf = "C"
+else:
+    huruf = "E"
+
+print(f"Huruf: {huruf}")
+if nilai >= 60:
+    print("LULUS")
+else:
+    print("TIDAK LULUS")</code></pre>
+                </section>
+            </section>
+
+            <!-- MATERI 4: Perulangan -->
+            <section>
+                <section>
+                    <h1>Materi 4: Perulangan</h1>
+                </section>
+
+                <section>
+                    <h2>Perulangan For dengan Range</h2>
+                    <pre><code class="language-python">for i in range(1, 6):
+    print(i)</code></pre>
+                    <p><strong>Output:</strong> 1 2 3 4 5</p>
+                    <ul>
+                        <li><code>range(5)</code> → 0,1,2,3,4</li>
+                        <li><code>range(1, 6)</code> → 1,2,3,4,5</li>
+                        <li><code>range(0, 10, 2)</code> → 0,2,4,6,8</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Perulangan While</h2>
+                    <pre><code class="language-python">counter = 1
+
+while counter <= 5:
+    print(counter)
+    counter = counter + 1</code></pre>
+                    <p><strong>Output:</strong> 1 2 3 4 5</p>
+                    <p>⚠️ Jangan lupa increment counter!</p>
+                </section>
+
+                <section>
+                    <h2>Break dan Continue</h2>
+                    <p><strong>Break: Keluar dari loop</strong></p>
+                    <pre><code class="language-python">for i in range(1, 11):
+    if i == 5:
+        break
+    print(i)  # Output: 1 2 3 4</code></pre>
+                </section>
+
+                <section>
+                    <h2>Continue</h2>
+                    <pre><code class="language-python">for i in range(1, 6):
+    if i == 3:
+        continue
+    print(i)  # Output: 1 2 4 5</code></pre>
+                </section>
+
+                <section>
+                    <h2>Nested Loop</h2>
+                    <pre><code class="language-python">for i in range(1, 4):
+    for j in range(1, 4):
+        print(f"{i} x {j} = {i*j}")
+    print()</code></pre>
+                </section>
+
+                <section>
+                    <h2>Program: Hitung Jumlah 1-N</h2>
+                    <pre><code class="language-python">n = int(input("N: "))
+jumlah = 0
+
+for i in range(1, n + 1):
+    jumlah = jumlah + i
+
+print(f"Jumlah 1 sampai {n} = {jumlah}")</code></pre>
+                    <p><strong>Contoh:</strong> N=5 → 1+2+3+4+5 = 15</p>
+                </section>
+            </section>
+
+            <!-- MATERI 5: List & String -->
+            <section>
+                <section>
+                    <h1>Materi 5: List & String</h1>
+                </section>
+
+                <section>
+                    <h2>List (Daftar)</h2>
+                    <pre><code class="language-python">buah = ["apel", "pisang", "jeruk"]
+
+data = [1, "Budi", 3.14, True]  # Campuran
+
+kosong = []  # Kosong</code></pre>
+                </section>
+
+                <section>
+                    <h2>Akses Elemen List</h2>
+                    <pre><code class="language-python">buah = ["apel", "pisang", "jeruk"]
+
+print(buah[0])    # apel
+print(buah[1])    # pisang
+print(buah[-1])   # jeruk (dari belakang)
+print(len(buah))  # 3</code></pre>
+                </section>
+
+                <section>
+                    <h2>Manipulasi List</h2>
+                    <pre><code class="language-python">buah = ["apel", "pisang"]
+
+buah.append("jeruk")        # Tambah
+buah.insert(1, "mangga")    # Insert
+buah.remove("mangga")       # Hapus
+del buah[0]                 # Hapus index</code></pre>
+                </section>
+
+                <section>
+                    <h2>Iterasi List</h2>
+                    <pre><code class="language-python">buah = ["apel", "pisang", "jeruk"]
+
+# Cara 1
+for b in buah:
+    print(b)
+
+# Cara 2
+for i in range(len(buah)):
+    print(buah[i])</code></pre>
+                </section>
+
+                <section>
+                    <h2>Slicing List</h2>
+                    <pre><code class="language-python">angka = [1, 2, 3, 4, 5]
+
+print(angka[1:4])   # [2, 3, 4]
+print(angka[:3])    # [1, 2, 3]
+print(angka[2:])    # [3, 4, 5]
+print(angka[::2])   # [1, 3, 5]</code></pre>
+                </section>
+
+                <section>
+                    <h2>String (Teks)</h2>
+                    <pre><code class="language-python">nama = "Budi Santoso"
+
+print(nama[0])      # B
+print(nama[-1])     # o
+print(len(nama))    # 12
+print(nama[0:4])    # Budi
+print(nama[5:])     # Santoso</code></pre>
+                </section>
+
+                <section>
+                    <h2>Metode String</h2>
+                    <pre><code class="language-python">teks = "hello world"
+
+print(teks.upper())              # HELLO WORLD
+print(teks.capitalize())         # Hello world
+print(teks.replace("world", "Python"))  # hello Python
+teks.split(" ")                 # ['hello', 'world']
+" ".join(["hello", "dunia"])    # hello dunia</code></pre>
+                </section>
+
+                <section>
+                    <h2>Program: Daftar Belanja (1/2)</h2>
+                    <pre><code class="language-python">belanja = []
+
+while True:
+    print("\n--- Daftar Belanja ---")
+    print("1. Tambah | 2. Lihat | 3. Hapus | 4. Keluar")
+    pilihan = input("Pilih: ")
+    
+    if pilihan == "1":
+        item = input("Item: ")
+        belanja.append(item)</code></pre>
+                </section>
+
+                <section>
+                    <h2>Program: Daftar Belanja (2/2)</h2>
+                    <pre><code class="language-python">    elif pilihan == "2":
+        for i, item in enumerate(belanja):
+            print(f"{i+1}. {item}")
+    
+    elif pilihan == "3":
+        idx = int(input("Nomor: ")) - 1
+        if 0 <= idx < len(belanja):
+            belanja.pop(idx)
+    
+    elif pilihan == "4":
+        break</code></pre>
+                </section>
+            </section>
+
+            <!-- MATERI 6: Fungsi -->
+            <section>
+                <section>
+                    <h1>Materi 6: Fungsi</h1>
+                </section>
+
+                <section>
+                    <h2>Konsep Fungsi</h2>
+                    <pre><code class="language-python">def sapa():
+    print("Halo, selamat datang!")
+
+sapa()  # Panggil fungsi
+sapa()  # Panggil lagi</code></pre>
+                </section>
+
+                <section>
+                    <h2>Fungsi dengan Parameter</h2>
+                    <pre><code class="language-python">def sapa(nama):
+    print(f"Halo, {nama}!")
+
+sapa("Budi")  # Halo, Budi!
+sapa("Ani")   # Halo, Ani!</code></pre>
+                </section>
+
+                <section>
+                    <h2>Fungsi dengan Return</h2>
+                    <pre><code class="language-python">def tambah(a, b):
+    hasil = a + b
+    return hasil
+
+jumlah = tambah(5, 3)
+print(jumlah)  # 8
+
+print(tambah(10, 20))  # 30</code></pre>
+                </section>
+
+                <section>
+                    <h2>Banyak Parameter & Return</h2>
+                    <pre><code class="language-python">def hitung_persegi(panjang, lebar):
+    luas = panjang * lebar
+    keliling = 2 * (panjang + lebar)
+    return luas, keliling
+
+l, k = hitung_persegi(10, 5)
+print(f"Luas: {l}, Keliling: {k}")</code></pre>
+                </section>
+
+                <section>
+                    <h2>Default Parameter</h2>
+                    <pre><code class="language-python">def sapa(nama="Teman"):
+    print(f"Halo, {nama}!")
+
+sapa()        # Halo, Teman!
+sapa("Budi")  # Halo, Budi!</code></pre>
+                </section>
+
+                <section>
+                    <h2>Scope (Jangkauan Variabel)</h2>
+                    <pre><code class="language-python">nama_global = "Budi"  # Global
+
+def fungsi():
+    nama_lokal = "Ani"  # Lokal
+    print(nama_global)  # Bisa
+    print(nama_lokal)   # Bisa
+
+fungsi()
+print(nama_global)  # Bisa
+print(nama_lokal)   # Error!</code></pre>
+                </section>
+
+                <section>
+                    <h2>Program: Kalkulator Geometri</h2>
+                    <pre><code class="language-python">def hitung_luas_persegi(sisi):
+    return sisi * sisi
+
+def hitung_keliling_persegi(sisi):
+    return 4 * sisi
+
+sisi = float(input("Sisi: "))
+print(f"Luas: {hitung_luas_persegi(sisi)}")
+print(f"Keliling: {hitung_keliling_persegi(sisi)}")</code></pre>
+                </section>
+            </section>
+
+            <!-- MATERI 7: Tipe Data Lanjut -->
+            <section>
+                <section>
+                    <h1>Materi 7: Tipe Data Lanjut</h1>
+                </section>
+
+                <section>
+                    <h2>Tuple (Tupel)</h2>
+                    <pre><code class="language-python">warna = ("merah", "hijau", "biru")
+
+print(warna[0])  # merah
+print(len(warna))  # 3
+
+# Tidak bisa diubah!
+# warna[0] = "kuning"  # Error!
+
+a, b, c = warna
+print(a)  # merah</code></pre>
+                </section>
+
+                <section>
+                    <h2>Set (Himpunan)</h2>
+                    <pre><code class="language-python">angka = {1, 2, 3, 4, 5}
+angka2 = {4, 5, 6, 7, 8}
+
+gabung = angka.union(angka2)           # Gabung
+irisan = angka.intersection(angka2)    # Irisan
+selisih = angka.difference(angka2)     # Selisih
+
+angka.add(10)      # Tambah
+angka.remove(1)    # Hapus</code></pre>
+                </section>
+
+                <section>
+                    <h2>Dictionary (Kamus)</h2>
+                    <pre><code class="language-python">siswa = {
+    "nama": "Budi",
+    "umur": 16,
+    "kelas": "10A"
+}
+
+print(siswa["nama"])  # Budi
+siswa["nilai"] = 85   # Tambah
+siswa["umur"] = 17    # Ubah
+del siswa["kelas"]    # Hapus</code></pre>
+                </section>
+
+                <section>
+                    <h2>Iterasi Dictionary</h2>
+                    <pre><code class="language-python">siswa = {"nama": "Budi", "umur": 16}
+
+# Loop key
+for key in siswa:
+    print(key)
+
+# Loop value
+for value in siswa.values():
+    print(value)
+
+# Loop key dan value
+for key, value in siswa.items():
+    print(f"{key}: {value}")</code></pre>
+                </section>
+
+                <section>
+                    <h2>Dictionary dalam List</h2>
+                    <pre><code class="language-python">siswa = [
+    {"nama": "Budi", "nilai": 85},
+    {"nama": "Ani", "nilai": 90},
+    {"nama": "Citra", "nilai": 78}
+]
+
+print(siswa[0]["nama"])  # Budi
+
+for s in siswa:
+    print(f"{s['nama']}: {s['nilai']}")</code></pre>
+                </section>
+
+                <section>
+                    <h2>Program: Kamus Sederhana (1/2)</h2>
+                    <pre><code class="language-python">kamus = {
+    "hello": "halo",
+    "world": "dunia",
+    "python": "python"
+}
+
+while True:
+    print("\n=== Kamus ===")
+    print("1. Cari | 2. Tambah | 3. Lihat | 4. Keluar")
+    pilihan = input("Pilih: ")</code></pre>
+                </section>
+
+                <section>
+                    <h2>Program: Kamus Sederhana (2/2)</h2>
+                    <pre><code class="language-python">    if pilihan == "1":
+        kata = input("Kata: ").lower()
+        if kata in kamus:
+            print(f"Arti: {kamus[kata]}")
+    
+    elif pilihan == "2":
+        inggris = input("English: ").lower()
+        indo = input("Indonesia: ").lower()
+        kamus[inggris] = indo
+    
+    elif pilihan == "3":
+        for k, v in kamus.items():
+            print(f"{k} : {v}")</code></pre>
+                </section>
+            </section>
+
+            <!-- MATERI 8: Proyek -->
+            <section>
+                <section>
+                    <h1>Materi 8: Proyek Mini</h1>
+                </section>
+
+                <section>
+                    <h2>Proyek 1: Manajemen Nilai Siswa</h2>
+                    <p>Fitur:</p>
+                    <ul>
+                        <li>Tambah siswa</li>
+                        <li>Lihat semua siswa</li>
+                        <li>Cari siswa</li>
+                        <li>Hitung rata-rata</li>
+                        <li>Hapus siswa</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Proyek 1 - Struktur</h2>
+                    <pre><code class="language-python">siswa = []
+
+def tambah_siswa():
+    nama = input("Nama: ")
+    nilai = int(input("Nilai: "))
+    siswa.append({"nama": nama, "nilai": nilai})
+
+def lihat_semua():
+    for i, s in enumerate(siswa):
+        print(f"{i+1}. {s['nama']}: {s['nilai']}")
+
+def hitung_rata_rata():
+    if len(siswa) > 0:
+        total = sum(s["nilai"] for s in siswa)
+        rata = total / len(siswa)
+        print(f"Rata-rata: {rata:.2f}")</code></pre>
+                </section>
+
+                <section>
+                    <h2>Proyek 2: Game Tebak Angka</h2>
+                    <p>Fitur:</p>
+                    <ul>
+                        <li>Komputer pilih angka random (1-100)</li>
+                        <li>User menebak dengan 10 kesempatan</li>
+                        <li>Feedback: terlalu besar/kecil</li>
+                        <li>Hitung jumlah tebakan</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2>Proyek 2 - Kode</h2>
+                    <pre><code class="language-python">import random
+
+angka_rahasia = random.randint(1, 100)
+kesempatan = 10
+tebakan = []
+
+while kesempatan > 0:
+    tebakan_user = int(input(f"Tebak (sisa {kesempatan}): "))
+    
+    if tebakan_user == angka_rahasia:
+        print(f"BENAR! {len(tebakan)} tebakan")
+        break
+    elif tebakan_user < angka_rahasia:
+        print("Terlalu KECIL")
+    else:
+        print("Terlalu BESAR")
+    
+    kesempatan -= 1</code></pre>
+                </section>
+
+                <section>
+                    <h2>Checklist Kompetensi</h2>
+                    <ul>
+                        <li>✓ Memahami variabel dan tipe data</li>
+                        <li>✓ Operator aritmatika dan perbandingan</li>
+                        <li>✓ If-elif-else</li>
+                        <li>✓ For dan while loop</li>
+                        <li>✓ List dan string</li>
+                        <li>✓ Fungsi sederhana</li>
+                        <li>✓ Dictionary</li>
+                        <li>✓ Program dengan menu interaktif</li>
+                        <li>✓ Solve masalah logika dengan Python</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h1>Selamat Belajar!</h1>
+                    <p>Python adalah kunci menuju programming yang lebih baik</p>
+                </section>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            width: 1280,
+            height: 720,
+            margin: 0.1,
+            minScale: 0.2,
+            maxScale: 2.0,
+            plugins: [RevealHighlight]
+        });
+    </script>
+</body>
+</html>
