@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Dasar Pemrograman Python</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  :root {
+    --primary: #60a5fa;
+    --primary-light: #1d4ed8;
+    --bg: #020617;
+    --bg-elevated: #020617;
+    --card-bg: #020617;
+    --text-main: #e5e7eb;
+    --text-muted: #9ca3af;
+    --accent: #22c55e;
+    --border: #1f2937;
+    --code-bg: #020617;
+    --code-text: #e5e7eb;
+    --radius: 10px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top, #0f172a 0, #020617 55%, #000 100%);
+    color: var(--text-main);
+    line-height: 1.6;
+  }
+
+  header {
+    background: radial-gradient(circle at top left, #1d4ed8, #0b1120);
+    color: white;
+    padding: 24px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid #1f2937;
+    backdrop-filter: blur(18px);
+  }
+
+  header .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 1.4rem;
+  }
+
+  header p {
+    margin: 2px 0 0;
+    font-size: 0.9rem;
+    color: #cbd5f5;
+  }
+
+  .nav-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .nav-buttons button {
+    border: 1px solid #1f2937;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    background: rgba(15, 23, 42, 0.75);
+    color: #e5e7eb;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .nav-buttons button:hover {
+    background: rgba(37, 99, 235, 0.8);
+    border-color: #3b82f6;
+  }
+
+  main {
+    max-width: 1000px;
+    margin: 16px auto 40px;
+    padding: 0 16px 16px;
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(220px, 1.3fr);
+    gap: 16px;
+  }
+
+  @media (max-width: 800px) {
+    main {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    header {
+      position: static;
+    }
+  }
+
+  /* Sidebar */
+  .sidebar {
+    position: sticky;
+    top: 96px;
+    align-self: flex-start;
+    background: radial-gradient(circle at top, #020617, #020617 60%, #000 100%);
+    border-radius: var(--radius);
+    padding: 12px 12px 8px;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+    border: 1px solid #1f2937;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    font-size: 0.9rem;
+  }
+
+  .sidebar h2 {
+    font-size: 0.95rem;
+    margin: 0 0 8px;
+    color: #e5e7eb;
+  }
+
+  .sidebar p {
+    margin: 0 0 10px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+
+  .toc {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc li {
+    margin-bottom: 4px;
+  }
+
+  .toc a {
+    display: block;
+    padding: 4px 6px;
+    border-radius: 6px;
+    color: var(--text-muted);
+    text-decoration: none;
+  }
+
+  .toc a:hover {
+    background: rgba(37, 99, 235, 0.15);
+    color: var(--primary);
+  }
+
+  .toc .toc-child {
+    padding-left: 12px;
+    font-size: 0.85rem;
+  }
+
+  /* Konten utama */
+  .card {
+    background:
+      radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 55%),
+      radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.18), transparent 60%),
+      var(--card-bg);
+    border-radius: var(--radius);
+    padding: 18px 18px 12px;
+    margin-bottom: 16px;
+    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.95);
+    border: 1px solid #111827;
+  }
+
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: rgba(37, 99, 235, 0.18);
+    color: #bfdbfe;
+    border: 1px solid rgba(59, 130, 246, 0.6);
+  }
+
+  h2 {
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+    color: #e5e7eb;
+  }
+
+  h3 {
+    margin: 14px 0 6px;
+    font-size: 0.98rem;
+    color: #e5e7eb;
+  }
+
+  p {
+    margin: 4px 0;
+    font-size: 0.94rem;
+    color: var(--text-main);
+  }
+
+  ul, ol {
+    margin: 4px 0 8px 18px;
+    padding: 0;
+    font-size: 0.94rem;
+    color: var(--text-main);
+  }
+
+  li {
+    margin-bottom: 3px;
+  }
+
+  .note {
+    border-left: 4px solid var(--accent);
+    background: rgba(22, 163, 74, 0.08);
+    padding: 6px 8px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #4ade80;
+    margin: 6px 0;
+  }
+
+  .code {
+    background: radial-gradient(circle at top, #020617, #020617 60%, #000 100%);
+    color: var(--code-text);
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.85rem;
+    overflow-x: auto;
+    margin: 6px 0 8px;
+    white-space: pre;
+    border: 1px solid #1f2937;
+  }
+
+  .tagline {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+
+  .pill-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin: 4px 0 6px;
+    font-size: 0.78rem;
+  }
+
+  .pill {
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid #1f2937;
+    background: rgba(15, 23, 42, 0.9);
+    color: #e5e7eb;
+  }
+
+  .checklist {
+    list-style: none;
+    margin-left: 0;
+  }
+
+  .checklist li::before {
+    content: "✔ ";
+    color: var(--accent);
+    font-weight: bold;
+  }
+
+  .footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 10px;
+  }
+
+  a {
+    color: #93c5fd;
+  }
+
+  a:hover {
+    color: #bfdbfe;
+  }
+</style>
+
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div>
+      <h1>Dasar Pemrograman Python</h1>
+      <p>Modul ringkas untuk pengantar Python: teori, contoh kode, dan proyek mini.</p>
+    </div>
+    <div class="nav-buttons">
+      <button onclick="window.scrollTo({top:0, behavior:'smooth'})">↑ Ke Atas</button>
+      <button onclick="document.getElementById('materi-8').scrollIntoView({behavior:'smooth'})">
+        Proyek Mini
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Konten utama -->
+  <section id="content">
+    <!-- Materi 1 -->
+    <article class="card" id="materi-1">
+      <div class="card-header">
+        <h2>Materi 1 – Pengenalan & Instalasi</h2>
+        <span class="badge">Level: Pemula</span>
+      </div>
+
+      <p class="tagline">Mengenal Python dan menyiapkan lingkungan kerja.</p>
+
+      <h3>1.1 Apa itu Python?</h3>
+      <p>Python adalah bahasa pemrograman tingkat tinggi yang mudah dibaca, fleksibel, dan banyak dipakai untuk berbagai keperluan (web, data, AI, automasi, game, dan lain-lain). [file:1]</p>
+      <ul>
+        <li>Sintaks sederhana dan mirip bahasa manusia. [file:1]</li>
+        <li>Cross-platform (Windows, Mac, Linux) dan komunitas sangat besar. [file:1]</li>
+      </ul>
+
+      <h3>1.2 Instalasi Python</h3>
+      <ol>
+        <li>Buka <a href="https://www.python.org/downloads/" target="_blank">python.org/downloads</a>. [file:1]</li>
+        <li>Unduh Python 3.x sesuai sistem operasi. [file:1]</li>
+        <li>Jalankan installer, centang <em>Add Python to PATH</em>, lalu klik Install. [file:1]</li>
+        <li>Cek di terminal: <code>python --version</code>. [file:1]</li>
+      </ol>
+
+      <h3>1.3 Editor & Environment</h3>
+      <ul>
+        <li>IDLE (bawaan Python) dan Thonny cocok untuk pemula. [file:1]</li>
+        <li>VS Code, PyCharm, dan Jupyter Notebook populer untuk proyek yang lebih serius. [file:1]</li>
+      </ul>
+
+      <h3>1.4 Menjalankan Program Python</h3>
+      <ul>
+        <li>Interactive shell (REPL): ketik <code>python</code> lalu jalankan per baris. [file:1]</li>
+      </ul>
+      <div class="code">
+&gt;&gt;&gt; print("Hello, World!")
+Hello, World!
+      </div>
+      <ul>
+        <li>File <code>.py</code>: simpan file lalu jalankan dengan <code>python nama_file.py</code>. [file:1]</li>
+      </ul>
+
+      <h3>1.5 Program Pertama</h3>
+      <div class="code">
+# hello.py
+# Ini adalah komentar
+print("Hello, World!")
+print("Nama saya adalah Python")
+      </div>
+      <p class="note"><strong>Tips</strong>: Gunakan komentar <code>#</code> untuk menjelaskan bagian kode pada siswa. [file:1]</p>
+    </article>
+
+    <!-- Materi 2 -->
+    <article class="card" id="materi-2">
+      <div class="card-header">
+        <h2>Materi 2 – Variabel & Tipe Data</h2>
+        <span class="badge">Kunci dasar</span>
+      </div>
+
+      <p class="tagline">Menyimpan data, mengenal tipe data, dan membaca input.</p>
+
+      <h3>2.1 Variabel</h3>
+      <p>Variabel adalah wadah untuk menyimpan nilai, misalnya nama, umur, atau tinggi badan. [file:1]</p>
+      <div class="code">
+nama = "Budi"
+umur = 16
+tinggi = 175.5
+      </div>
+      <ul>
+        <li>Nama variabel diawali huruf atau underscore, tanpa spasi. [file:1]</li>
+        <li>Gunakan gaya <code>snake_case</code> seperti <code>nama_siswa</code>. [file:1]</li>
+      </ul>
+
+      <h3>2.2 Tipe Data Dasar</h3>
+      <ul>
+        <li><strong>Integer</strong>: bilangan bulat, misalnya <code>umur = 16</code>. [file:1]</li>
+        <li><strong>Float</strong>: bilangan desimal, misalnya <code>tinggi = 175.5</code>. [file:1]</li>
+        <li><strong>String</strong>: teks, misalnya <code>nama = "Budi"</code>. [file:1]</li>
+        <li><strong>Boolean</strong>: <code>True</code> atau <code>False</code>. [file:1]</li>
+      </ul>
+
+      <h3>2.3 Operator Aritmatika & Perbandingan</h3>
+      <div class="code">
+a = 10
+b = 3
+
+# Aritmatika
+print(a + b)   # 13
+print(a // b)  # 3  (pembagian bulat)
+print(a % b)   # 1  (sisa bagi)
+
+# Perbandingan
+print(a > b)   # True
+print(a == b)  # False
+      </div>
+
+      <h3>2.5 Input & Konversi Tipe Data</h3>
+      <div class="code">
+nama = input("Masukkan nama Anda: ")
+print("Halo, " + nama)
+
+umur = int(input("Berapa umur Anda: "))
+print(umur + 1)
+      </div>
+      <p class="note"><strong>Penting</strong>: <code>input()</code> selalu mengembalikan string, gunakan <code>int()</code> atau <code>float()</code> untuk konversi numerik. [file:1]</p>
+
+      <h3>2.7 Contoh: Kalkulator Sederhana</h3>
+      <div class="code">
+angka1 = float(input("Masukkan angka pertama: "))
+angka2 = float(input("Masukkan angka kedua: "))
+
+jumlah = angka1 + angka2
+kurang = angka1 - angka2
+kali   = angka1 * angka2
+bagi   = angka1 / angka2
+
+print("\n--- Hasil Perhitungan ---")
+print(f"Penjumlahan: {jumlah}")
+print(f"Pengurangan: {kurang}")
+print(f"Perkalian  : {kali}")
+print(f"Pembagian  : {bagi}")
+      </div>
+    </article>
+
+    <!-- Materi 3 -->
+    <article class="card" id="materi-3">
+      <div class="card-header">
+        <h2>Materi 3 – Percabangan</h2>
+        <span class="badge">If / Elif / Else</span>
+      </div>
+
+      <p class="tagline">Membuat keputusan dalam program.</p>
+
+      <h3>3.1 Operator Logika</h3>
+      <div class="code">
+x = 5
+print( (x > 0) and (x < 10) )  # AND
+umur = 15
+print( (umur < 12) or (umur > 18) )  # OR
+is_admin = False
+print( not is_admin )  # NOT
+      </div>
+
+      <h3>3.2–3.4 If, If-Else, If-Elif-Else</h3>
+      <div class="code">
+skor = int(input("Masukkan skor Anda: "))
+
+if skor >= 70:
+    print("Anda LULUS")
+else:
+    print("Anda TIDAK LULUS")
+      </div>
+
+      <div class="code">
+nilai = int(input("Masukkan nilai Anda (0-100): "))
+
+if nilai >= 90:
+    print("Grade: A")
+elif nilai >= 80:
+    print("Grade: B")
+elif nilai >= 70:
+    print("Grade: C")
+elif nilai >= 60:
+    print("Grade: D")
+else:
+    print("Grade: E")
+      </div>
+
+      <h3>3.5–3.6 Contoh Program</h3>
+      <p>Gunakan percabangan bersarang untuk aturan yang lebih kompleks, misalnya izin berkendara dan penilaian huruf. [file:1]</p>
+    </article>
+
+    <!-- Materi 4 -->
+    <article class="card" id="materi-4">
+      <div class="card-header">
+        <h2>Materi 4 – Perulangan</h2>
+        <span class="badge">For &amp; While</span>
+      </div>
+
+      <p class="tagline">Mengulang instruksi secara otomatis.</p>
+
+      <h3>4.1 Perulangan For dengan Range</h3>
+      <div class="code">
+for i in range(1, 6):
+    print(i)  # 1 sampai 5
+      </div>
+      <ul>
+        <li><code>range(5)</code> → 0,1,2,3,4. [file:1]</li>
+        <li><code>range(0, 10, 2)</code> → 0,2,4,6,8. [file:1]</li>
+      </ul>
+
+      <h3>4.2 While & Infinite Loop</h3>
+      <div class="code">
+counter = 1
+
+while counter <= 5:
+    print(counter)
+    counter = counter + 1
+      </div>
+      <p class="note"><strong>Hati-hati</strong>: Jangan lupa menaikkan counter, kalau tidak akan terjadi infinite loop. [file:1]</p>
+
+      <h3>4.3 Break & Continue</h3>
+      <div class="code">
+for i in range(1, 11):
+    if i == 5:
+        break
+    print(i)   # 1 2 3 4
+
+for i in range(1, 6):
+    if i == 3:
+        continue
+    print(i)   # 1 2 4 5
+      </div>
+    </article>
+
+    <!-- Materi 5 -->
+    <article class="card" id="materi-5">
+      <div class="card-header">
+        <h2>Materi 5 – List & String</h2>
+        <span class="badge">Koleksi data</span>
+      </div>
+
+      <p class="tagline">Mengelola kumpulan data dan teks.</p>
+
+      <h3>5.1–5.3 List</h3>
+      <div class="code">
+buah = ["apel", "pisang", "jeruk"]
+
+print(buah[0])   # apel
+print(len(buah)) # 3
+
+buah.append("mangga")
+buah.remove("pisang")
+      </div>
+
+      <h3>5.4–5.5 Iterasi & Slicing</h3>
+      <div class="code">
+angka = [1, 2, 3, 4, 5]
+
+print(angka[1:4])  # [2, 3, 4]
+print(angka[::2])  # [1, 3, 5]
+      </div>
+
+      <h3>5.6–5.7 String & Metode</h3>
+      <div class="code">
+teks = "hello world"
+
+print(teks.upper())
+print(teks.replace("world", "Python"))
+kata = teks.split(" ")
+print(kata)
+print(" ".join(kata))
+      </div>
+
+      <h3>5.8 Contoh: Daftar Belanja</h3>
+      <p>Program ini memakai list, while, percabangan, dan enumerasi untuk mengelola daftar belanja interaktif. [file:1]</p>
+    </article>
+
+    <!-- Materi 6 -->
+    <article class="card" id="materi-6">
+      <div class="card-header">
+        <h2>Materi 6 – Fungsi</h2>
+        <span class="badge">Modularisasi</span>
+      </div>
+
+      <p class="tagline">Membagi program menjadi blok-blok yang dapat dipakai ulang.</p>
+
+      <h3>6.1–6.3 Fungsi Dasar</h3>
+      <div class="code">
+def sapa(nama):
+    print(f"Halo, {nama}!")
+
+sapa("Budi")
+sapa("Ani")
+      </div>
+
+      <div class="code">
+def tambah(a, b):
+    hasil = a + b
+    return hasil
+
+print(tambah(5, 3))
+      </div>
+
+      <h3>6.4–6.6 Parameter, Return, Scope</h3>
+      <p>Gunakan parameter untuk mengirim data ke fungsi dan <code>return</code> untuk mengembalikan hasil perhitungan. [file:1]</p>
+      <p>Variabel di luar fungsi bersifat global, sedangkan variabel di dalam fungsi hanya bisa dipakai di fungsi tersebut. [file:1]</p>
+
+      <h3>6.7 Contoh: Kalkulator Geometri</h3>
+      <p>Program menghitung luas dan keliling persegi, serta luas lingkaran menggunakan fungsi terpisah. [file:1]</p>
+    </article>
+
+    <!-- Materi 7 -->
+    <article class="card" id="materi-7">
+      <div class="card-header">
+        <h2>Materi 7 – Tuple, Set, Dictionary</h2>
+        <span class="badge">Tipe data lanjut</span>
+      </div>
+
+      <p class="tagline">Struktur data untuk kebutuhan yang lebih spesifik.</p>
+
+      <h3>7.1 Tuple</h3>
+      <div class="code">
+warna = ("merah", "hijau", "biru")
+for w in warna:
+    print(w)
+      </div>
+
+      <h3>7.2 Set</h3>
+      <div class="code">
+angka1 = {1, 2, 3, 4, 5}
+angka2 = {4, 5, 6, 7, 8}
+
+print(angka1.union(angka2))
+print(angka1.intersection(angka2))
+print(angka1.difference(angka2))
+      </div>
+
+      <h3>7.3–7.5 Dictionary</h3>
+      <div class="code">
+siswa = {
+    "nama": "Budi",
+    "umur": 16,
+    "kelas": "10A"
+}
+
+print(siswa["nama"])
+siswa["nilai"] = 85
+      </div>
+
+      <h3>7.6 Contoh: Kamus Sederhana</h3>
+      <p>Program menyediakan menu untuk mencari terjemahan, menambah kata baru, dan menampilkan semua isi kamus. [file:1]</p>
+    </article>
+
+    <!-- Materi 8 -->
+    <article class="card" id="materi-8">
+      <div class="card-header">
+        <h2>Materi 8 – Proyek Mini & Review</h2>
+        <span class="badge">Latihan akhir</span>
+      </div>
+
+      <p class="tagline">Menggabungkan semua konsep dalam proyek kecil.</p>
+
+      <h3>8.1 Proyek: Manajemen Nilai Siswa</h3>
+      <p>Proyek ini memakai list of dictionary, fungsi, perulangan, dan menu interaktif untuk mengelola data siswa. [file:1]</p>
+      <ul class="pill-group">
+        <li class="pill">Tambah siswa</li>
+        <li class="pill">Lihat semua</li>
+        <li class="pill">Cari siswa</li>
+        <li class="pill">Hitung rata-rata</li>
+        <li class="pill">Hapus siswa</li>
+      </ul>
+
+      <h3>8.2 Proyek: Game Tebak Angka</h3>
+      <p>Game konsol sederhana yang menggunakan modul <code>random</code>, perulangan, list, dan percabangan untuk memberi umpan balik pada pemain. [file:1]</p>
+
+      <h3>8.3 Checklist Kompetensi</h3>
+      <ul class="checklist">
+        <li>Memahami variabel, tipe data, dan operator. [file:1]</li>
+        <li>Menggunakan if-elif-else dan perulangan for/while. [file:1]</li>
+        <li>Mengolah list, string, dan fungsi sederhana. [file:1]</li>
+        <li>Menggunakan dictionary dan membuat program menu interaktif. [file:1]</li>
+        <li>Menyusun proyek mini berbasis logika dasar Python. [file:1]</li>
+      </ul>
+    </article>
+
+    <div class="footer">
+      &copy; Dasar Pemrograman Python – Bahan ajar kelas. Silakan modifikasi sesuai kebutuhan.
+    </div>
+  </section>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>Daftar Materi</h2>
+    <p>Klik untuk lompat ke bagian tertentu saat mengajar.</p>
+    <ul class="toc">
+      <li><a href="#materi-1">1. Pengenalan & Instalasi</a></li>
+      <li class="toc-child"><a href="#materi-1">Apa itu Python?</a></li>
+      <li><a href="#materi-2">2. Variabel & Tipe Data</a></li>
+      <li><a href="#materi-3">3. Percabangan</a></li>
+      <li><a href="#materi-4">4. Perulangan</a></li>
+      <li><a href="#materi-5">5. List & String</a></li>
+      <li><a href="#materi-6">6. Fungsi</a></li>
+      <li><a href="#materi-7">7. Tuple, Set, Dict</a></li>
+      <li><a href="#materi-8">8. Proyek Mini & Review</a></li>
+    </ul>
+  </aside>
+</main>
+
+</body>
+</html>
