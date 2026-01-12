@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Latihan Program Python – Seleksi & Perulangan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- DARK THEME -->
+  <style>
+    :root {
+      --primary: #60a5fa;
+      --primary-light: #1d4ed8;
+      --bg: #020617;
+      --bg-elevated: #020617;
+      --card-bg: #020617;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --accent: #22c55e;
+      --border: #1f2937;
+      --code-bg: #020617;
+      --code-text: #e5e7eb;
+      --radius: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #0f172a 0, #020617 55%, #000 100%);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    header {
+      background: radial-gradient(circle at top left, #1d4ed8, #0b1120);
+      color: white;
+      padding: 24px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid #1f2937;
+      backdrop-filter: blur(18px);
+    }
+
+    header .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    header p {
+      margin: 2px 0 0;
+      font-size: 0.9rem;
+      color: #cbd5f5;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-buttons button {
+      border: 1px solid #1f2937;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      background: rgba(15, 23, 42, 0.75);
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-buttons button:hover {
+      background: rgba(37, 99, 235, 0.8);
+      border-color: #3b82f6;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 16px auto 40px;
+      padding: 0 16px 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(220px, 1.3fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 800px) {
+      main {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      header {
+        position: static;
+      }
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: sticky;
+      top: 96px;
+      align-self: flex-start;
+      background: radial-gradient(circle at top, #020617, #020617 60%, #000 100%);
+      border-radius: var(--radius);
+      padding: 12px 12px 8px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+      border: 1px solid #1f2937;
+      max-height: calc(100vh - 120px);
+      overflow-y: auto;
+      font-size: 0.9rem;
+    }
+
+    .sidebar h2 {
+      font-size: 0.95rem;
+      margin: 0 0 8px;
+      color: #e5e7eb;
+    }
+
+    .sidebar p {
+      margin: 0 0 10px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .toc {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .toc li {
+      margin-bottom: 4px;
+    }
+
+    .toc a {
+      display: block;
+      padding: 4px 6px;
+      border-radius: 6px;
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .toc a:hover {
+      background: rgba(37, 99, 235, 0.15);
+      color: var(--primary);
+    }
+
+    .toc .toc-child {
+      padding-left: 12px;
+      font-size: 0.85rem;
+    }
+
+    /* Konten utama */
+    .card {
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.18), transparent 60%),
+        var(--card-bg);
+      border-radius: var(--radius);
+      padding: 18px 18px 12px;
+      margin-bottom: 16px;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.95);
+      border: 1px solid #111827;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.18);
+      color: #bfdbfe;
+      border: 1px solid rgba(59, 130, 246, 0.6);
+    }
+
+    h2 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+      color: #e5e7eb;
+    }
+
+    h3 {
+      margin: 14px 0 6px;
+      font-size: 0.98rem;
+      color: #e5e7eb;
+    }
+
+    p {
+      margin: 4px 0;
+      font-size: 0.94rem;
+      color: var(--text-main);
+    }
+
+    ul, ol {
+      margin: 4px 0 8px 18px;
+      padding: 0;
+      font-size: 0.94rem;
+      color: var(--text-main);
+    }
+
+    li {
+      margin-bottom: 3px;
+    }
+
+    .code {
+      background: radial-gradient(circle at top, #020617, #020617 60%, #000 100%);
+      color: var(--code-text);
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.85rem;
+      overflow-x: auto;
+      margin: 6px 0 8px;
+      white-space: pre;
+      border: 1px solid #1f2937;
+    }
+
+    .tagline {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    a {
+      color: #93c5fd;
+    }
+
+    a:hover {
+      color: #bfdbfe;
+    }
+
+    .pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin: 4px 0 6px;
+      font-size: 0.78rem;
+    }
+
+    .pill {
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid #1f2937;
+      background: rgba(15, 23, 42, 0.9);
+      color: #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div>
+      <h1>Latihan Program Python – Seleksi & Perulangan</h1>
+      <p>Beberapa program terpisah tanpa fungsi, fokus latihan if, loop, dan nested loop.</p>
+    </div>
+    <div class="nav-buttons">
+      <button onclick="window.scrollTo({top:0, behavior:'smooth'})">↑ Ke Atas</button>
+      <button onclick="document.getElementById('program-1').scrollIntoView({behavior:'smooth'})">
+        Mulai Program 1
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Konten utama -->
+  <section id="content">
+
+    <!-- Intro -->
+    <article class="card" id="intro">
+      <div class="card-header">
+        <h2>Deskripsi Singkat</h2>
+        <span class="badge">Tanpa fungsi</span>
+      </div>
+      <p class="tagline">Setiap blok kode adalah program mandiri yang bisa dijalankan terpisah.</p>
+      <p>Dokumen ini berisi 5 program Python sederhana untuk melatih penggunaan seleksi, perulangan, dan nested loop tanpa membungkusnya ke dalam fungsi.</p>
+      <ul>
+        <li>Cocok sebagai latihan di lab atau tugas mandiri.</li>
+        <li>Tiap program diawali judul yang tercetak di output, sehingga mudah dibedakan.</li>
+      </ul>
+    </article>
+
+    <!-- Program 1 -->
+    <article class="card" id="program-1">
+      <div class="card-header">
+        <h2>Program 1 – Cek Ganjil / Genap</h2>
+        <span class="badge">Seleksi + for</span>
+      </div>
+      <p class="tagline">Mengecek beberapa bilangan apakah ganjil atau genap.</p>
+      <p>Program meminta jumlah data, lalu membaca setiap angka dan menampilkan apakah angka tersebut bilangan ganjil atau genap menggunakan operator modulo.</p>
+
+      <div class="code">
+# Program 1: Cek Ganjil / Genap (seleksi + for)
+
+print("=== Program 1: Cek Ganjil / Genap ===")
+
+n = int(input("Berapa banyak angka yang ingin dicek? "))
+
+for i in range(n):
+    angka = int(input(f"Masukkan angka ke-{i+1}: "))
+
+    if angka % 2 == 0:
+        print(f"{angka} adalah bilangan genap")
+    else:
+        print(f"{angka} adalah bilangan ganjil")
+      </div>
+    </article>
+
+    <!-- Program 2 -->
+    <article class="card" id="program-2">
+      <div class="card-header">
+        <h2>Program 2 – Total dan Rata-Rata Nilai</h2>
+        <span class="badge">While + if + continue</span>
+      </div>
+      <p class="tagline">Menghitung total dan rata-rata dari data nilai yang dimasukkan.</p>
+      <p>Siswa memasukkan nilai berulang kali sampai mengetik kata <code>stop</code>, nilai negatif diabaikan dengan <code>continue</code>, lalu program menghitung total dan rata-rata.</p>
+
+      <div class="code">
+# Program 2: Total dan Rata-Rata Nilai (while + if + continue)
+
+print("=== Program 2: Total dan Rata-Rata Nilai ===")
+
+total = 0
+jumlah_data = 0
+
+while True:
+    teks = input("Masukkan nilai (atau 'stop' untuk selesai): ")
+
+    if teks.lower() == "stop":
+        break  # keluar dari loop
+
+    nilai = int(teks)
+
+    if nilai < 0:
+        print("Nilai tidak boleh negatif!")
+        continue  # lompat ke iterasi berikutnya
+
+    total += nilai
+    jumlah_data += 1
+
+if jumlah_data > 0:
+    rata = total / jumlah_data
+    print(f"Total nilai = {total}")
+    print(f"Rata-rata = {rata:.2f}")
+else:
+    print("Tidak ada data nilai yang valid.")
+      </div>
+    </article>
+
+    <!-- Program 3 -->
+    <article class="card" id="program-3">
+      <div class="card-header">
+        <h2>Program 3 – Persegi Angka</h2>
+        <span class="badge">Nested loop</span>
+      </div>
+      <p class="tagline">Mencetak pola persegi berisi angka dari 1 sampai n.</p>
+      <p>Program ini menggunakan dua for bersarang untuk mencetak persegi n × n, di mana setiap baris berisi urutan angka dari 1 hingga n.</p>
+
+      <div class="code">
+# Program 3: Persegi Angka (nested for)
+
+print("=== Program 3: Persegi Angka ===")
+
+n = int(input("Masukkan ukuran persegi: "))
+
+for i in range(n):          # loop baris
+    for j in range(n):      # loop kolom
+        print(j + 1, end=" ")
+    print()                 # ganti baris
+      </div>
+    </article>
+
+    <!-- Program 4 -->
+    <article class="card" id="program-4">
+      <div class="card-header">
+        <h2>Program 4 – Segitiga Bintang Naik</h2>
+        <span class="badge">Nested loop</span>
+      </div>
+      <p class="tagline">Mencetak segitiga bintang dengan tinggi tertentu.</p>
+      <p>Program menggambar segitiga kanan ke bawah dengan jumlah bintang per baris bertambah dari 1 sampai n menggunakan nested loop.</p>
+
+      <div class="code">
+# Program 4: Segitiga Bintang (nested for)
+
+print("=== Program 4: Segitiga Bintang ===")
+
+n = int(input("Masukkan tinggi segitiga: "))
+
+for i in range(1, n + 1):      # baris
+    for j in range(i):         # jumlah bintang per baris
+        print("*", end="")
+    print()
+      </div>
+    </article>
+
+    <!-- Program 5 -->
+    <article class="card" id="program-5">
+      <div class="card-header">
+        <h2>Program 5 – Tabel Perkalian</h2>
+        <span class="badge">Nested loop + formatting</span>
+      </div>
+      <p class="tagline">Menampilkan tabel perkalian rapi sampai bilangan n.</p>
+      <p>Program menggunakan nested loop dan format string dengan lebar 4 karakter agar kolom hasil perkalian rata dan mudah dibaca.</p>
+
+      <div class="code">
+# Program 5: Tabel Perkalian (nested loop + formatting)
+
+print("=== Program 5: Tabel Perkalian ===")
+
+n = int(input("Tampilkan tabel perkalian sampai: "))
+
+for i in range(1, n + 1):
+    for j in range(1, n + 1):
+        hasil = i * j
+        print(f"{hasil:4}", end="")  # lebar 4 karakter biar rapi
+    print()
+      </div>
+    </article>
+
+    <!-- Penutup -->
+    <article class="card" id="penutup">
+      <div class="card-header">
+        <h2>Catatan Penggunaan</h2>
+        <span class="badge">Ringkasan</span>
+      </div>
+      <p>Kelima program ini dapat digunakan sebagai latihan setelah mempelajari materi if-else, for, while, dan nested loop pada Python dasar.</p>
+      <ul class="pill-group">
+        <li class="pill">Latihan mandiri</li>
+        <li class="pill">Demo di depan kelas</li>
+        <li class="pill">Tugas modifikasi program</li>
+      </ul>
+    </article>
+
+    <div class="footer">
+      &copy; Latihan Program Python – Seleksi &amp; Perulangan.
+    </div>
+  </section>
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>Daftar Program</h2>
+    <p>Pilih program yang ingin dipelajari.</p>
+    <ul class="toc">
+      <li><a href="#intro">Deskripsi Singkat</a></li>
+      <li><a href="#program-1">Program 1 – Ganjil / Genap</a></li>
+      <li><a href="#program-2">Program 2 – Total &amp; Rata-Rata</a></li>
+      <li><a href="#program-3">Program 3 – Persegi Angka</a></li>
+      <li><a href="#program-4">Program 4 – Segitiga Bintang</a></li>
+      <li><a href="#program-5">Program 5 – Tabel Perkalian</a></li>
+      <li><a href="#penutup">Catatan Penggunaan</a></li>
+    </ul>
+  </aside>
+</main>
+
+</body>
+</html>
